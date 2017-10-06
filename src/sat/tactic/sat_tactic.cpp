@@ -65,6 +65,9 @@ class sat_tactic : public tactic {
 
             CASSERT("sat_solver", m_solver.check_invariant());
             IF_VERBOSE(TACTIC_VERBOSITY_LVL, m_solver.display_status(verbose_stream()););
+            m_solver.display_dimacs(std::cout);
+            std::flush(std::cout);
+            exit(0);
             TRACE("sat_dimacs", m_solver.display_dimacs(tout););
             dep2assumptions(dep2asm, assumptions);
             lbool r = m_solver.check(assumptions.size(), assumptions.c_ptr());
